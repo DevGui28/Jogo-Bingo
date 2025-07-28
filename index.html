@@ -28,9 +28,9 @@
                 <select id="cardColor">
                     <option value="selecione a cor da cartela">Selecione a Cor Cartela</option>
                     <option value="jornal">Jornal</option>
-                    <option value="verde">Verde Claro</option>
-                    <option value="rosa">Rosa Claro</option>
-                    <option value="amarelo">Amarelo Claro</option>
+                    <option value="verde">Verde</option>
+                    <option value="rosa">Rosa</option>
+                    <option value="amarelo">Amarelo</option>
                 </select>
             </div>
 
@@ -52,6 +52,19 @@
             </div>
             <button id="clearAllBtn" class="control-button">Limpar Seleção</button>
         </div>
+
+    <h2>Suas Cartelas</h2>
+    <div id="allCardGroups">
+      <div id="jornalGroup" class="card-group hidden">
+        <h3 class="group-title">Jornal</h3>
+        <div id="jornalCards" class="cards-grid"></div>
+      </div>
+
+      <div id="extrasGroup" class="card-group hidden">
+        <h3 class="group-title">Cartelas Extras</h3>
+        <div id="extrasCards" class="cards-grid"></div>
+      </div>
+    </div>
 
         <h2>Suas Cartelas</h2>
         <div id="bingoCards" class="cards-grid"></div>
