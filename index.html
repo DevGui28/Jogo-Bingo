@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,6 +8,7 @@
     <link rel="shortcut icon" href="img/BINGO.png">
     <link rel="stylesheet" href="src/style.css" />
 </head>
+
 <body>
     <div class="container">
         <form id="bingoForm">
@@ -19,6 +21,16 @@
             <div class="form-group">
                 <label for="cardName">N° Série da Cartela:</label>
                 <input type="text" id="cardName" placeholder="Indentifique sua cartela" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cardColor">Cor da Cartela:</label>
+                <select id="cardColor">
+                    <option value="jornal">Jornal</option>
+                    <option value="verde">Verde Claro</option>
+                    <option value="rosa">Rosa Claro</option>
+                    <option value="amarelo">Amarelo Claro</option>
+                </select>
             </div>
 
             <div id="inputs" class="inputs-grid"></div>
