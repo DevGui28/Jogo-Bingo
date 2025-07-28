@@ -2,10 +2,17 @@ const form = document.getElementById('bingoForm');
 const cardNameInput = document.getElementById('cardName');
 const cardColorSelector = document.getElementById('cardColor');
 const inputsContainer = document.getElementById('inputs');
-const bingoCardsContainer = document.getElementById('bingoCards');
+// const bingoCardsContainer = document.getElementById('bingoCards'); // Removido
 const gameRuleSelector = document.getElementById('gameRule');
 const resetGameBtn = document.getElementById('resetGameBtn');
 let gameHasWinner = false;
+
+// NOVOS CONTAINERS PARA OS GRUPOS DE CARTELAS
+const jornalGroup = document.getElementById('jornalGroup');
+const jornalCardsContainer = document.getElementById('jornalCards');
+const extrasGroup = document.getElementById('extrasGroup');
+const extrasCardsContainer = document.getElementById('extrasCards');
+
 
 // Elementos do Modal de Vitória
 const winnerModal = document.getElementById('winnerModal');
@@ -93,6 +100,12 @@ form.addEventListener('submit', function (e) {
 
 // --- Funções do Jogo ---
 
+/**
+ * FUNÇÃO ATUALIZADA
+ * - Adiciona a cartela no grupo correto (Jornal ou Extras).
+ * - Mostra/esconde o título do grupo conforme necessário.
+ * - Esconde o título do grupo se a última cartela for excluída.
+ */
 function addCard(numbers, name, color) {
   const container = document.createElement('div');
   container.classList.add('card-container');
@@ -108,7 +121,15 @@ function addCard(numbers, name, color) {
   deleteBtn.title = 'Excluir esta cartela';
   deleteBtn.addEventListener('click', () => {
     if (confirm(`Tem certeza que deseja excluir a cartela "${name}"?`)) {
+      const parentGroup = container.closest('.card-group');
+      const parentGrid = container.parentElement;
+
       container.remove();
+
+      // Se a grade do grupo ficar vazia, esconde o grupo inteiro
+      if (parentGrid.children.length === 0) {
+        parentGroup.classList.add('hidden');
+      }
     }
   });
 
@@ -136,8 +157,7 @@ function addCard(numbers, name, color) {
     } else {
       cell.addEventListener('click', () => {
         if (gameHasWinner) return;
-        // Chama a nova função que marca por grupo de cor
-        toggleMarkNumberInGroup(number, color);
+        toggleMarkNumberByColor(number, color);
         checkAllCardsForWin();
       });
     }
@@ -146,28 +166,20 @@ function addCard(numbers, name, color) {
   
   container.appendChild(header);
   container.appendChild(card);
-  bingoCardsContainer.appendChild(container);
+
+  // Lógica para decidir em qual grupo adicionar a cartela
+  if (color === 'jornal') {
+    jornalCardsContainer.appendChild(container);
+    jornalGroup.classList.remove('hidden'); // Mostra o grupo se estiver escondido
+  } else {
+    extrasCardsContainer.appendChild(container);
+    extrasGroup.classList.remove('hidden'); // Mostra o grupo se estiver escondido
+  }
 }
 
-/**
- * FUNÇÃO ATUALIZADA
- * Marca/desmarca números apenas dentro do seu grupo de cor.
- */
-function toggleMarkNumberInGroup(number, sourceColor) {
-  let targetSelector;
-
-  // Define o grupo de cartelas a ser afetado
-  if (sourceColor === 'jornal') {
-    targetSelector = '.card-jornal';
-  } else {
-    // Grupo 'colorido'
-    targetSelector = '.card-verde, .card-rosa, .card-amarelo';
-  }
-
-  // Encontra todos os containers de cartela que pertencem ao grupo
+function toggleMarkNumberByColor(number, sourceColor) {
+  const targetSelector = `.card-${sourceColor}`;
   const targetContainers = document.querySelectorAll(targetSelector);
-
-  // Para cada cartela do grupo, encontra a célula com o número e alterna a marcação
   targetContainers.forEach(container => {
     const cellToToggle = container.querySelector(`.cell[data-number="${number}"]`);
     if (cellToToggle) {
