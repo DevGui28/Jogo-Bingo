@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jogo de Bingo</title>
+    <link rel="shortcut icon" href="img/BINGO.png">
+    <link rel="stylesheet" href="src/style.css" />
+</head>
+<body>
+    <div class="container">
+        <form id="bingoForm">
+            <div class="title-container">
+                <h1>Gere suas cartelas!</h1>
+            </div>
+
+            <p class="subtitle">Dê um nome <br> Insira 24 números de 1 a 75.</p>
+
+            <div class="form-group">
+                <label for="cardName">N° Série da Cartela:</label>
+                <input type="text" id="cardName" placeholder="Indentifique sua cartela" required>
+            </div>
+
+            <div id="inputs" class="inputs-grid"></div>
+            <button type="submit">Adicionar Cartela</button>
+        </form>
+
+        <div class="game-controls">
+            <div class="rules-container">
+                <label for="gameRule">Regra da Rodada:</label>
+                <select id="gameRule">
+                    <option value="full_card">Cartela Cheia</option>
+                    <option value="four_corners">Quatro Cantos</option>
+                    <option value="horizontal_line">Linha Horizontal</option>
+                    <option value="vertical_line">Linha Vertical</option>
+                    <option value="diagonal">Diagonal</option>
+                    <option value="padrão_especial">Padrão Especial</option>
+                </select>
+            </div>
+            <button id="clearAllBtn" class="control-button">Limpar Seleção</button>
+        </div>
+
+        <h2>Suas Cartelas</h2>
+        <div id="bingoCards" class="cards-grid"></div>
+        <button id="resetGameBtn" class="hidden">Limpar e Jogar Novamente</button>
+
+    </div>
+
+    <div id="winnerModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-title-container">
+                <h2 class="modal-title">BINGO!</h2>
+            </div>
+            <p id="winnerMessage" class="modal-text"></p>
+            <button id="playAgainBtn" class="modal-button">Jogar Novamente</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>
+            Desenvolvido pelo <a href="https://devgui.com.br/" target="_blank" rel="noopener noreferrer">DevGui</a>
+            &nbsp;&nbsp;&bull;&nbsp;&nbsp;
+            &copy; <span id="currentYear"></span> Todos os direitos reservados.
+        </p>
+    </footer>
+
+    <script src="src/script.js"></script>
+</body>
+
+</html>

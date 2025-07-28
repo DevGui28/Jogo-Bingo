@@ -1,0 +1,430 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f8f9fa;
+    margin: 0;
+    padding: 1rem;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.title-icon {
+    width: 40px;
+    height: 40px;
+}
+
+.title-container h1 {
+    margin-bottom: 0;
+}
+
+h1,
+h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    text-align: center;
+    color: #555;
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+form {
+    margin-bottom: 1rem;
+}
+
+.form-group {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+#cardName {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+}
+
+.game-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.rules-container {
+    text-align: center;
+}
+
+.rules-container label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.rules-container select {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+.control-button {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.control-button:hover {
+    background-color: #5a6268;
+}
+
+#resetGameBtn {
+    width: 100%;
+    margin-top: 1.5rem;
+    padding: 12px;
+    font-size: 16px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#resetGameBtn:hover {
+    background-color: #c82333;
+}
+
+.hidden {
+    display: none;
+}
+
+.inputs-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 5px;
+    margin-bottom: 1rem;
+}
+
+.inputs-grid div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input {
+    width: 100%;
+    max-width: 60px;
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+input.invalid {
+    border: 2px solid red;
+}
+
+.error-message {
+    font-size: 12px;
+    color: red;
+    margin-top: 2px;
+    height: 14px;
+    text-align: center;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    background: #0066cc;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+    background: #004c99;
+}
+
+button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.cards-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.card-container {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+    padding: 1rem;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.card-container.winner {
+    box-shadow: 0 0 20px 5px gold;
+    border-color: gold;
+}
+
+.delete-card-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    color: #555;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    /* --- Correção com Flexbox para centralização perfeita --- */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    line-height: 1;
+    /* Reseta o line-height para evitar conflitos */
+}
+
+.delete-card-btn:hover {
+    background-color: #dc3545;
+    color: white;
+    border-color: #c82333;
+}
+
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0.75rem;
+    text-align: center;
+    padding-right: 20px;
+}
+
+.card {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.header-cell {
+    width: 50px;
+    height: 30px;
+    background: #333;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 4px;
+}
+
+.cell {
+    width: 50px;
+    height: 50px;
+    background: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 18px;
+    user-select: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.cell.marked {
+    background-color: #28a745;
+    color: white;
+}
+
+@media (max-width: 600px) {
+
+    h1,
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    .game-controls {
+        flex-direction: column;
+    }
+
+    .inputs-grid {
+        gap: 6px;
+    }
+
+    input {
+        max-width: 45px;
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .header-cell {
+        width: 40px;
+        font-size: 16px;
+    }
+
+    .cell {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    button {
+        font-size: 15px;
+        padding: 10px;
+    }
+
+    .container {
+        padding: 1rem;
+    }
+}
+
+footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid #e9ecef;
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+footer a {
+    color: #0056b3;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modal-content {
+    background: white;
+    padding: 2rem 3rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    transform: scale(1);
+    transition: transform 0.3s ease;
+    max-width: 500px;
+    margin: 1rem;
+}
+
+.modal-overlay.hidden .modal-content {
+    transform: scale(0.9);
+}
+
+.modal-title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1rem;
+}
+
+.modal-icon {
+    width: 50px;
+    height: 50px;
+}
+
+.modal-title {
+    color: #28a745;
+    font-size: 2.5rem;
+    margin-bottom: 0;
+}
+
+.modal-text {
+    font-size: 1.1rem;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.modal-button {
+    background: #0066cc;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.modal-button:hover {
+    background: #004c99;
+}
