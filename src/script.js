@@ -363,6 +363,17 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
+    // --- ALTERAÇÃO APLICADA ---
+    // Verifica se já existe uma cartela com o mesmo nome.
+    const existingCardTitles = Array.from(document.querySelectorAll('.card-title'));
+    const isNameDuplicate = existingCardTitles.some(titleEl => titleEl.textContent === cardName);
+
+    if (isNameDuplicate) {
+      await showCustomModal(`Já existe uma cartela com o nome "${cardName}". Por favor, escolha outro nome.`);
+      cardNameInput.focus();
+      return;
+    }
+
     checkErrors(); 
     const inputs = Array.from(inputsContainer.querySelectorAll('input'));
     if (inputs.some(input => input.classList.contains('invalid'))) {
