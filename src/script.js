@@ -200,7 +200,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (index === 12) { 
         cell.classList.add('marked');
       } else {
-        // --- ALTERAÇÃO APLICADA ---
         // O evento de clique agora determina o estado (marcar/desmarcar)
         // e chama a função que afeta apenas o grupo correto.
         cell.addEventListener('click', (event) => {
