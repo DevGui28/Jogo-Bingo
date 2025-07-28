@@ -188,7 +188,6 @@ button:disabled {
     cursor: not-allowed;
 }
 
-/* NOVOS ESTILOS PARA GRUPOS DE CARTELAS */
 .card-group {
   margin-bottom: 2.5rem;
 }
@@ -206,7 +205,6 @@ button:disabled {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
-  /* justify-content: center; é herdado ou pode ser removido se o alinhamento for à esquerda */
 }
 
 .card-container {
