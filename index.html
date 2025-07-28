@@ -1,100 +1,97 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jogo de Bingo</title>
-    <link rel="shortcut icon" href="img/BINGO.png">
-    <link rel="stylesheet" href="src/style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jogo de Bingo</title>
+  <link rel="shortcut icon" href="img/BINGO.png"> 
+  <link rel="stylesheet" href="src/style.css" />
 </head>
-
 <body>
-    <div class="container">
-        <form id="bingoForm">
-            <div class="title-container">
-                <h1>Gere suas cartelas!</h1>
-            </div>
+  <div class="container">
+    <form id="bingoForm">
+      <div class="title-container">
+        <h1>Gere suas cartelas!</h1>
+      </div>
+      
+      <p class="subtitle">Dê um nome<br>Escolha uma cor<br>Insira os números (1-75)</p>
+      
+      <div class="form-group">
+        <label for="cardName">N° série da Cartela:</label>
+        <input type="text" id="cardName" placeholder="Identifique sua Cartela" required>
+      </div>
 
-            <p class="subtitle">Dê um nome<br>Escolha uma cor<br>Insira os números (1-75)</p>
+      <div class="form-group">
+        <label for="cardColor">Cor da Cartela:</label>
+        <select id="cardColor" required>
+          <option value="" disabled selected>Selecione a cor da cartela</option>
+          <option value="jornal">Jornal</option>
+          <option value="verde">Verde</option>
+          <option value="rosa">Rosa</option>
+          <option value="amarelo">Amarelo</option>
+        </select>
+      </div>
 
-            <div class="form-group">
-                <label for="cardName">N° série da Cartela:</label>
-                <input type="text" id="cardName" placeholder="Identifique sua Cartela" required>
-            </div>
+      <div id="inputs" class="inputs-grid"></div>
+      <button type="submit">Adicionar Cartela</button>
+    </form>
 
-            <div class="form-group">
-                <label for="cardColor">Cor da Cartela:</label>
-                <select id="cardColor" required>
-                    <option value="" disabled selected>Selecione a cor da cartela</option>
-                    <option value="jornal">Jornal</option>
-                    <option value="verde">Verde</option>
-                    <option value="rosa">Rosa</option>
-                    <option value="amarelo">Amarelo</option>
-                </select>
-            </div>
-
-            <div id="inputs" class="inputs-grid"></div>
-            <button type="submit">Adicionar Cartela</button>
-        </form>
-
-        <div class="game-controls">
-            <div class="rules-container">
-                <label for="gameRule">Regra da Rodada:</label>
-                <select id="gameRule">
-                    <option value="full_card">Cartela Cheia</option>
-                    <option value="four_corners">Quatro Cantos</option>
-                    <option value="horizontal_line">Linha Horizontal</option>
-                    <option value="vertical_line">Linha Vertical</option>
-                    <option value="diagonal">Diagonal</option>
-                    <option value="padrão_especial">Padrão Especial</option>
-                </select>
-            </div>
-            <button id="clearAllBtn" class="control-button">Limpar Seleção</button>
-        </div>
-
-        <div id="allCardGroups">
-            <h2>Suas Cartelas</h2>
-
-            <div id="jornalGroup" class="card-group hidden">
-                <h3 class="group-title">Cartelas Padrão (Jornal)</h3>
-                <div id="jornalCards" class="cards-grid"></div>
-            </div>
-
-            <div id="extrasGroup" class="card-group hidden">
-                <h3 class="group-title">Cartelas Extras</h3>
-                <div id="extrasCards" class="cards-grid"></div>
-            </div>
-        </div>
-
-        <button id="resetGameBtn" class="hidden">Limpar e Jogar Novamente</button>
-
+    <div class="game-controls">
+      <div class="rules-container">
+        <label for="gameRule">Regra da Rodada:</label>
+        <select id="gameRule">
+          <option value="full_card">Cartela Cheia</option>
+          <option value="four_corners">Quatro Cantos</option>
+          <option value="horizontal_line">Linha Horizontal</option>
+          <option value="vertical_line">Linha Vertical</option>
+          <option value="diagonal">Diagonal</option>
+          <option value="padrão_especial">Padrão Especial</option>
+        </select>
+      </div>
+      <button id="clearAllBtn" class="control-button">Limpar Seleção</button>
     </div>
 
-    <!-- Modal para exibir o vencedor -->
-    <div id="winnerModal" class="modal-overlay hidden">
-        <div class="modal-content">
-            <div class="modal-title-container">
-                <h2 class="modal-title">BINGO!</h2>
-            </div>
-            <p id="winnerMessage" class="modal-text"></p>
-            <!-- Botões atualizados para "Continuar Jogo" e "Nova Rodada" -->
-            <div class="modal-button-group">
-                <button id="continueGameBtn" class="modal-button secondary">Continuar Jogo</button>
-                <button id="newRoundBtn" class="modal-button">Nova Rodada</button>
-            </div>
-        </div>
+    <div id="allCardGroups">
+      <h2>Suas Cartelas</h2>
+      
+      <div id="jornalGroup" class="card-group hidden">
+        <h3 class="group-title">Cartelas Padrão (Jornal)</h3>
+        <div id="jornalCards" class="cards-grid"></div>
+      </div>
+
+      <div id="extrasGroup" class="card-group hidden">
+        <h3 class="group-title">Cartelas Extras</h3>
+        <div id="extrasCards" class="cards-grid"></div>
+      </div>
     </div>
 
-    <footer>
-        <p>
-            Desenvolvido pelo <a href="http://devgui.com.br" target="_blank" rel="noopener noreferrer">DevGui</a>
-            &nbsp;&nbsp;&bull;&nbsp;&nbsp;
-            &copy; <span id="currentYear"></span> Todos os direitos reservados.
-        </p>
-    </footer>
+    <button id="resetGameBtn" class="hidden">Limpar e Jogar Novamente</button>
+    
+  </div>
 
-    <script src="src/script.js"></script>
+  <!-- Modal para exibir o vencedor -->
+  <div id="winnerModal" class="modal-overlay hidden">
+    <div class="modal-content">
+      <div class="modal-title-container">
+        <h2 class="modal-title">BINGO!</h2>
+      </div>
+      <p id="winnerMessage" class="modal-text"></p>
+      <!-- Botões atualizados para "Continuar Jogo" e "Nova Rodada" -->
+      <div class="modal-button-group">
+        <button id="continueGameBtn" class="modal-button secondary">Continuar Jogo</button>
+        <button id="newRoundBtn" class="modal-button">Nova Rodada</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>
+      Desenvolvido pelo <a href="http://devgui.com.br" target="_blank" rel="noopener noreferrer">DevGui</a>
+      &nbsp;&nbsp;&bull;&nbsp;&nbsp;
+      &copy; <span id="currentYear"></span> Todos os direitos reservados.
+    </p>
+  </footer>
+
+  <script src="src/script.js"></script>
 </body>
-
 </html>
