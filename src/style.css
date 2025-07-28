@@ -425,17 +425,6 @@ footer a:hover {
   margin-bottom: 2rem;
 }
 
-/* --- NOVOS ESTILOS PARA OS BOTÕES DO MODAL --- */
-
-/* Estilos para o grupo de botões no modal */
-.modal-button-group {
-  display: flex;
-  justify-content: center;
-  gap: 1rem; /* Espaçamento entre os botões */
-  flex-wrap: wrap; /* Permite que os botões quebrem a linha em telas pequenas */
-}
-
-/* Estilo para o botão primário (Nova Rodada) */
 .modal-button {
   background: #0066cc;
   color: white;
@@ -450,13 +439,4 @@ footer a:hover {
 
 .modal-button:hover {
   background: #004c99;
-}
-
-/* Estilo para o botão secundário (Continuar Jogo) */
-.modal-button.secondary {
-  background-color: #6c757d; /* Cor cinza */
-}
-
-.modal-button.secondary:hover {
-  background-color: #5a6268;
 }
