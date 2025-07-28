@@ -26,6 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Variável para controlar o estado do jogo (se já existe um vencedor)
   let gameHasWinner = false;
+  // --- CORREÇÃO APLICADA ---
+  // Usa um Set para armazenar os nomes de cartelas existentes de forma eficiente.
+  const existingCardNames = new Set();
 
   // --- FUNÇÕES AUXILIARES E MODAIS ---
 
@@ -168,6 +171,10 @@ document.addEventListener('DOMContentLoaded', () => {
     deleteBtn.addEventListener('click', async () => {
       const confirmed = await showCustomModal(`Tem certeza que deseja excluir a cartela "${name}"?`, true);
       if (confirmed) {
+        // --- CORREÇÃO APLICADA ---
+        // Remove o nome do Set quando a cartela é excluída.
+        existingCardNames.delete(name);
+
         const parentGroup = container.closest('.card-group');
         const parentGrid = container.parentElement;
         container.remove();
@@ -226,6 +233,10 @@ document.addEventListener('DOMContentLoaded', () => {
       extrasCardsContainer.appendChild(container);
       extrasGroup.classList.remove('hidden');
     }
+    
+    // --- CORREÇÃO APLICADA ---
+    // Adiciona o nome ao Set após a cartela ser criada com sucesso.
+    existingCardNames.add(name);
   }
   
   /**
@@ -363,13 +374,10 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // --- ALTERAÇÃO APLICADA ---
-    // Verifica se já existe uma cartela com o mesmo nome.
-    const existingCardTitles = Array.from(document.querySelectorAll('.card-title'));
-    const isNameDuplicate = existingCardTitles.some(titleEl => titleEl.textContent === cardName);
-
-    if (isNameDuplicate) {
-      await showCustomModal(`Já existe uma cartela com o nome "${cardName}". Por favor, escolha outro nome.`);
+    // --- CORREÇÃO APLICADA ---
+    // Verifica se o nome já existe no Set.
+    if (existingCardNames.has(cardName)) {
+      await showCustomModal(`Já existe uma cartela com o N° de série "${cardName}". Por favor, escolha outro N° de série.`);
       cardNameInput.focus();
       return;
     }
