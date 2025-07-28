@@ -1,43 +1,42 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jogo de Bingo</title>
-    <link rel="shortcut icon" href="img/BINGO.png">
-    <link rel="stylesheet" href="src/style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jogo de Bingo</title>
+  <link rel="shortcut icon" href="img/BINGO.png">
+  <link rel="stylesheet" href="src/style.css" />
 </head>
-
 <body>
-    <div class="container">
-        <form id="bingoForm">
-            <div class="title-container">
-                <h1>Gere suas cartelas!</h1>
-            </div>
+  <div class="container">
+    <form id="bingoForm">
+      <div class="title-container">
+        <h1>Gere suas cartelas!</h1>
+      </div>
+      
+      <p class="subtitle">Dê um nome<br>Escolha uma cor<br>Insira os números (1-75)</p>
+      
+      <div class="form-group">
+        <label for="cardName">N° série da Cartela:</label>
+        <input type="text" id="cardName" placeholder="Identifique sua Cartela" required>
+      </div>
 
-            <p class="subtitle">Dê um nome <br> Insira 24 números de 1 a 75.</p>
+      <div class="form-group">
+        <label for="cardColor">Cor da Cartela:</label>
+        <p class="subtitle">Dê um nome<br>Escolha uma cor<br>Insira os números (1-75)</p>
+        <select id="cardColor">
+          <option value="seleciona a cor">Selecione a cor da cartela</option>
+          <option value="jornal">Jornal</option>
+          <option value="verde">Verde</option>
+          <option value="rosa">Rosa</option>
+          <option value="amarelo">Amarelo</option>
+          </optgroup>
+        </select>
+      </div>
 
-            <div class="form-group">
-                <label for="cardName">N° Série da Cartela:</label>
-                <input type="text" id="cardName" placeholder="Indentifique sua cartela" required>
-            </div>
-
-            <div class="form-group">
-                <label for="cardColor">Cor da Cartela:</label>
-                <p class="subtitle">- Jornal (Padrão) <br>- Coloridas (Extras)</p>
-                <select id="cardColor">
-                    <option value="selecione a cor da cartela">Selecione a Cor Cartela</option>
-                    <option value="jornal">Jornal</option>
-                    <option value="verde">Verde</option>
-                    <option value="rosa">Rosa</option>
-                    <option value="amarelo">Amarelo</option>
-                </select>
-            </div>
-
-            <div id="inputs" class="inputs-grid"></div>
-            <button type="submit">Adicionar Cartela</button>
-        </form>
+      <div id="inputs" class="inputs-grid"></div>
+      <button type="submit">Adicionar Cartela</button>
+    </form>
 
     <div class="game-controls">
       <div class="rules-container">
@@ -54,8 +53,20 @@
       <button id="clearAllBtn" class="control-button">Limpar Seleção</button>
     </div>
 
-    <h2>Suas Cartelas</h2>
-    <div id="bingoCards" class="cards-grid"></div>
+    <div id="allCardGroups">
+      <h2>Suas Cartelas</h2>
+      
+      <div id="jornalGroup" class="card-group hidden">
+        <h3 class="group-title">Cartelas Padrão (Jornal)</h3>
+        <div id="jornalCards" class="cards-grid"></div>
+      </div>
+
+      <div id="extrasGroup" class="card-group hidden">
+        <h3 class="group-title">Cartelas Extras</h3>
+        <div id="extrasCards" class="cards-grid"></div>
+      </div>
+    </div>
+
     <button id="resetGameBtn" class="hidden">Limpar e Jogar Novamente</button>
     
   </div>
@@ -63,7 +74,6 @@
   <div id="winnerModal" class="modal-overlay hidden">
     <div class="modal-content">
       <div class="modal-title-container">
-        <img src="bingo-icon.png" alt="Ícone de Bingo" class="modal-icon">
         <h2 class="modal-title">BINGO!</h2>
       </div>
       <p id="winnerMessage" class="modal-text"></p>
@@ -71,15 +81,14 @@
     </div>
   </div>
 
-    <footer>
-        <p>
-            Desenvolvido pelo <a href="https://devgui.com.br/" target="_blank" rel="noopener noreferrer">DevGui</a>
-            &nbsp;&nbsp;&bull;&nbsp;&nbsp;
-            &copy; <span id="currentYear"></span> Todos os direitos reservados.
-        </p>
-    </footer>
+  <footer>
+    <p>
+      Desenvolvido pelo <a href="http://devgui.com.br" target="_blank" rel="noopener noreferrer">DevGui</a>
+      &nbsp;&nbsp;&bull;&nbsp;&nbsp;
+      &copy; <span id="currentYear"></span> Todos os direitos reservados.
+    </p>
+  </footer>
 
-    <script src="src/script.js"></script>
+  <script src="src/script.js"></script>
 </body>
-
 </html>
