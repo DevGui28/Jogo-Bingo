@@ -1,5 +1,6 @@
 const form = document.getElementById('bingoForm');
 const cardNameInput = document.getElementById('cardName');
+const cardColorSelector = document.getElementById('cardColor'); // NOVO
 const inputsContainer = document.getElementById('inputs');
 const bingoCardsContainer = document.getElementById('bingoCards');
 const gameRuleSelector = document.getElementById('gameRule');
@@ -60,9 +61,12 @@ function checkErrors() {
     });
 }
 
+// ATUALIZADO para pegar a cor selecionada
 form.addEventListener('submit', function (e) {
     e.preventDefault();
     const cardName = cardNameInput.value.trim();
+    const cardColor = cardColorSelector.value; // Pega o valor da cor
+
     if (cardName === '') {
         alert("Por favor, dê um nome para a cartela.");
         cardNameInput.focus();
@@ -81,18 +85,29 @@ form.addEventListener('submit', function (e) {
     const values = inputs.map((input, index) =>
         index === 12 ? "★" : input.value.trim()
     );
-    addCard(values, cardName);
+
+    // Envia a cor para a função que cria a cartela
+    addCard(values, cardName, cardColor);
+
     createInputs();
     cardNameInput.value = '';
 });
 
 // --- Funções do Jogo ---
-function addCard(numbers, name) {
+
+/**
+ * FUNÇÃO ATUALIZADA
+ * Agora aceita o parâmetro de cor e adiciona a classe correspondente.
+ */
+function addCard(numbers, name, color) {
     const container = document.createElement('div');
     container.classList.add('card-container');
+    container.classList.add(`card-${color}`); // Adiciona a classe da cor
+
     const cardTitle = document.createElement('h3');
     cardTitle.classList.add('card-title');
     cardTitle.textContent = name;
+
     const deleteBtn = document.createElement('button');
     deleteBtn.className = 'delete-card-btn';
     deleteBtn.innerHTML = '&times;';
@@ -102,8 +117,10 @@ function addCard(numbers, name) {
             container.remove();
         }
     });
+
     container.appendChild(deleteBtn);
     container.appendChild(cardTitle);
+
     const header = document.createElement('div');
     header.classList.add('card');
     'BINGO'.split('').forEach(letter => {
@@ -112,6 +129,7 @@ function addCard(numbers, name) {
         headerCell.textContent = letter;
         header.appendChild(headerCell);
     });
+
     const card = document.createElement('div');
     card.classList.add('card');
     numbers.forEach((number, index) => {
@@ -130,6 +148,7 @@ function addCard(numbers, name) {
         }
         card.appendChild(cell);
     });
+
     container.appendChild(header);
     container.appendChild(card);
     bingoCardsContainer.appendChild(container);
