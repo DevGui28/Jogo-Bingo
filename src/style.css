@@ -59,7 +59,8 @@ form {
     margin-bottom: 0.5rem;
 }
 
-#cardName {
+#cardName,
+#cardColor {
     padding: 10px;
     font-size: 16px;
     border-radius: 6px;
@@ -67,6 +68,12 @@ form {
     width: 100%;
     max-width: 400px;
     box-sizing: border-box;
+    margin: 0 auto;
+    display: block;
+}
+
+#cardColor {
+    cursor: pointer;
 }
 
 .game-controls {
@@ -224,13 +231,11 @@ button:disabled {
     font-weight: bold;
     cursor: pointer;
     transition: all 0.2s;
-    /* --- Correção com Flexbox para centralização perfeita --- */
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 0;
     line-height: 1;
-    /* Reseta o line-height para evitar conflitos */
 }
 
 .delete-card-btn:hover {
@@ -238,7 +243,6 @@ button:disabled {
     color: white;
     border-color: #c82333;
 }
-
 
 .card-title {
     font-size: 1.2rem;
@@ -284,8 +288,27 @@ button:disabled {
     transition: background-color 0.3s, color 0.3s;
 }
 
+/* --- NOVOS ESTILOS DE CORES PARA AS CARTELAS --- */
+.card-jornal .cell {
+    background-color: #6c757d;
+}
+
+.card-verde .cell {
+    background-color: #e8f5e9;
+}
+
+.card-rosa .cell {
+    background-color: #fce4ec;
+}
+
+.card-amarelo .cell {
+    background-color: #fffde7;
+}
+
+
 .cell.marked {
-    background-color: #28a745;
+    background-color: #28a745 !important;
+    /* !important garante que a cor de marcado sobreponha a cor da cartela */
     color: white;
 }
 
