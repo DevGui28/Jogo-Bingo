@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Variável para controlar o estado do jogo (se já existe um vencedor)
   let gameHasWinner = false;
-  // --- CORREÇÃO APLICADA ---
   // Usa um Set para armazenar os nomes de cartelas existentes de forma eficiente.
   const existingCardNames = new Set();
 
@@ -171,7 +170,6 @@ document.addEventListener('DOMContentLoaded', () => {
     deleteBtn.addEventListener('click', async () => {
       const confirmed = await showCustomModal(`Tem certeza que deseja excluir a cartela "${name}"?`, true);
       if (confirmed) {
-        // --- CORREÇÃO APLICADA ---
         // Remove o nome do Set quando a cartela é excluída.
         existingCardNames.delete(name);
 
@@ -234,7 +232,6 @@ document.addEventListener('DOMContentLoaded', () => {
       extrasGroup.classList.remove('hidden');
     }
     
-    // --- CORREÇÃO APLICADA ---
     // Adiciona o nome ao Set após a cartela ser criada com sucesso.
     existingCardNames.add(name);
   }
@@ -246,16 +243,12 @@ document.addEventListener('DOMContentLoaded', () => {
    * @param {boolean} shouldMark - True para marcar, false para desmarcar.
    */
   function setMarkedStateByGroup(number, sourceColor, shouldMark) {
-    let targetCells;
-
-    // Determina o grupo de cartelas a ser afetado
-    if (sourceColor === 'jornal') {
-      // Se o clique foi em uma cartela 'jornal', afeta apenas outras cartelas 'jornal'
-      targetCells = document.querySelectorAll(`.card-jornal .cell[data-number="${number}"]`);
-    } else {
-      // Se o clique foi em uma cartela colorida, afeta todas as coloridas
-      targetCells = document.querySelectorAll(`.card-verde .cell[data-number="${number}"], .card-rosa .cell[data-number="${number}"], .card-amarelo .cell[data-number="${number}"]`);
-    }
+    // --- ALTERAÇÃO APLICADA ---
+    // A lógica agora é mais simples: o seletor é construído dinamicamente
+    // com a cor da cartela que foi clicada. Isso faz com que cada cor
+    // (jornal, verde, rosa, amarelo) se torne seu próprio grupo.
+    const targetSelector = `.card-${sourceColor} .cell[data-number="${number}"]`;
+    const targetCells = document.querySelectorAll(targetSelector);
 
     // Aplica o estado (marcado/desmarcado) a todas as células do grupo
     targetCells.forEach(cell => {
@@ -374,10 +367,9 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // --- CORREÇÃO APLICADA ---
     // Verifica se o nome já existe no Set.
     if (existingCardNames.has(cardName)) {
-      await showCustomModal(`Já existe uma cartela com o N° de série "${cardName}". Por favor, escolha outro N° de série.`);
+      await showCustomModal(`Já existe uma cartela com o nome "${cardName}". Por favor, escolha outro nome.`);
       cardNameInput.focus();
       return;
     }
