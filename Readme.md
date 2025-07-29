@@ -10,8 +10,10 @@ Importante: Não é possível criar duas cartelas com o mesmo nome.
 
 Escolha uma Cor: No seletor "Cor da Cartela", escolha uma das opções disponíveis.
 
+Serve pra todas Rodadas
 Jornal: Esta é a cor padrão. As cartelas "Jornal" funcionam em um grupo separado.
 
+Serve apenas para Rodadas Extras
 Verde, Rosa, Amarelo: Estas são as cartelas "Extras". Elas funcionam juntas em um segundo grupo.
 
 Insira os Números: Preencha os 24 campos numerados com os números da sua cartela física. O campo central "FREE" já vem preenchido e marcado.
